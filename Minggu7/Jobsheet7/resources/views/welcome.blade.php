@@ -11,5 +11,12 @@
         Selamat datang semua, ini adalah halaman utama dari aplikasi ini.
     </div>
 </div>
+<div class="col-4">
+    <form action="{{ url('logout') }}" method="GET">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    </form>
+</div>
 
 @endsection
+        
