@@ -25,7 +25,7 @@
                 <div class="text-center mt-3">
                     <form action="{{ url('profile/edit') }}" method="GET">
                         @csrf
-                        <button type="submit" class="btn btn-info">Ganti Profil</button>
+                        <button type="submit" class="btn btn-warning">Ganti Profil</button>
                     </form>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="col-md-12 mt-3">
                 <form action="{{ url('logout') }}" method="GET">
                     @csrf
-                    <button type="submit" class="btn btn-danger w-100">Logout</button>
+                    <button type="submit" class="btn btn-warning w-100">Logout</button>
                 </form>
             </div>
         </div>
