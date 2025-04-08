@@ -19,7 +19,7 @@
                 <img src="{{ $foto }}" class="img-thumbnail rounded-circle object-fit-cover" style="width: 350px; height: 350px; object-fit: cover;" alt="Foto Profil">
 
                 <!-- Form Upload Foto -->
-                <form action="{{ url('/user/update-photo') }}" method="POST" enctype="multipart/form-data" class="mb-2">
+                <form action="{{ url('/update-photo') }}" method="POST" enctype="multipart/form-data" class="mb-2">
                     @csrf
                     <input type="file" name="photo_profile" id="photo_profile" class="form-control mb-2" accept="image/*" onchange="previewPhoto()" required>
                     <button type="submit" class="btn btn-primary w-100">Ganti Foto</button>
@@ -27,7 +27,7 @@
 
                 <!-- Tombol Hapus Foto -->
                 @if(Auth::user()->photo_profile)
-                    <form action="{{ url('/user/delete-photo') }}" method="POST" class="mb-3">
+                    <form action="{{ url('/delete-photo') }}" method="POST" class="mb-3">
                         @csrf
                         <button type="submit" class="btn btn-outline-danger w-100">Hapus Foto</button>
                     </form>
