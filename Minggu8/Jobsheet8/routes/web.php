@@ -21,8 +21,9 @@ Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'postRegister']);
 
-Route::middleware(['auth'])->group(function(){ 
+Route::middleware(['auth'])->group(function(){ //Fitur yang perlu autentikasi login
     Route::get('/', [WelcomeController::class, 'index']);
+
 
     Route::group(['prefix' => 'user'], function () {
         Route::middleware(['authorize:ADM'])->group(function (){
@@ -43,8 +44,10 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/import', [UserController::class, 'import']);                       // ajax form upload excel
             Route::post('/import_ajax', [UserController::class, 'import_ajax']);            // ajax import excel
             Route::get('/export_excel', [UserController::class, 'export_excel']);           // export excel
-            Route::get('/export_pdf', [UserController::class, 'export_pdf']);               //export pdf
-        });
+            Route::get('/export_pdf', [UserController::class, 'export_pdf']);               // export pdf
+            Route::post('/update-photo', [UserController::class, 'update_photo']);          // upload foto
+            Route::post('/delete-photo', [UserController::class, 'delete_photo']);          // hapus foto
+         });
     });
     
     Route::group(['prefix' => 'level'], function () {
