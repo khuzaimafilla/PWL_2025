@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Home - POS</title>
+    <title>Halaman Home</title>
 </head>
 <body>
-    <h1>Welcome to Khuzaima Filla's Point of Sales App</h1>
+    <h1>Selamat Datang di Halaman Home</h1>
+    <p>Ini adalah halaman utama dari project Laravel Anda.</p>
 </body>
 </html>

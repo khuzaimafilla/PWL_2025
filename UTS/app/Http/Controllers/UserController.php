@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserModel;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function profile($id, $name)
+    public function index()
     {
-        return view('user.profile', compact('id', 'name'));
+        $data = UserModel::all();
+        return view('user.index', ['data' => $data]);
     }
 }
 
