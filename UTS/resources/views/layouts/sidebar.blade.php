@@ -1,61 +1,64 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
-        <img src="{{ asset('img/bnb.png') }}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8; width: 30px;">
-        <span class="brand-text font-weight-bold">UTS Laravel</span>
-    </a>
-    <div class="sidebar">
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview">
-
-                <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>Home</p>
-                    </a>
-                </li>
-
-                <li class="nav-header">USER MANAGEMENT</li>
-
-                <li class="nav-item">
-                    <a href="/level" class="nav-link">
-                        <i class="nav-icon fas fa-user-shield"></i>
-                        <p>Level User</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/user" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Data User</p>
-                    </a>
-                </li>
-
-                <li class="nav-header">BARANG MANAGEMENT</li>
-
-                <li class="nav-item">
-                    <a href="/kategori" class="nav-link">
-                        <i class="nav-icon fas fa-tags"></i>
-                        <p>Data Kategori</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/barang" class="nav-link">
-                        <i class="nav-icon fas fa-boxes"></i>
-                        <p>Data Barang</p>
-                    </a>
-                </li>
-
-                <li class="nav-header">SUPPLIER MANAGEMENT</li>
-
-                <li class="nav-item">
-                    <a href="/supplier" class="nav-link">
-                        <i class="nav-icon fas fa-truck"></i>
-                        <p>Data Supplier</p>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
+<div class="sidebar">
+  <!-- SidebarSearch Form -->
+  <div class="form-inline mt-2">
+    <div class="input-group" data-widget="sidebar-search">
+      <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+      <div class="input-group-append">
+        <button class="btn btn-sidebar">
+          <i class="fas fa-search fa-fw"></i>
+        </button>
+      </div>
     </div>
-</aside>
+  </div>
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-item">
+        <a href="{{ url('/') }}" class="nav-link {{ ($activeMenu == 'dashboard')? 'active' : '' }} ">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li class="nav-header">Data Pengguna</li>
+      <li class="nav-item">
+        <a href="{{ url('/level') }}" class="nav-link {{ ($activeMenu == 'level')? 'active' : '' }} ">
+          <i class="nav-icon fas fa-layer-group"></i>
+          <p>Level User</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('/user') }}" class="nav-link {{ ($activeMenu == 'user')? 'active' : '' }}">
+          <i class="nav-icon far fa-user"></i>
+          <p>Data User</p>
+        </a>
+      </li>
+      <li class="nav-header">Data Barang</li>
+      <li class="nav-item">
+        <a href="{{ url('/kategori') }}" class="nav-link {{ ($activeMenu == 'kategori')? 'active' : '' }} ">
+          <i class="nav-icon far fa-bookmark"></i>
+          <p>Kategori Barang</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'barang')? 'active' : '' }} ">
+          <i class="nav-icon far fa-list-alt"></i>
+          <p>Data Barang</p>
+        </a>
+      </li>
+      <li class="nav-header">Data Transaksi</li>
+      <li class="nav-item">
+        <a href="{{ url('/stok') }}" class="nav-link {{ ($activeMenu == 'stok')? 'active' : '' }} ">
+          <i class="nav-icon fas fa-cubes"></i>
+          <p>Stok Barang</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url('/barang') }}" class="nav-link {{ ($activeMenu == 'penjualan')? 'active' : '' }} ">
+          <i class="nav-icon fas fa-cash-register"></i>
+          <p>Transaksi Penjualan</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+      
