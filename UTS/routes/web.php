@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
@@ -19,7 +20,19 @@ use App\Http\Controllers\SupplierController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::pattern('id', '[0-9]+'); // artinya ketika ada parameter {id}, maka harus berupa angka
+
+//Login
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'postlogin']);
+Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
+
+//Register
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'postRegister']);
+
+Route::middleware(['auth'])->group(function(){ 
+    Route::get('/', [WelcomeController::class, 'index']);
 
 Route::prefix('user')->group(function (){
     Route::get('/',[UserController::class,'index']);//menampilkan halaman awal
@@ -38,7 +51,7 @@ Route::prefix('user')->group(function (){
     Route::delete('/{id}',[UserController::class,'destroy']);// menghapus data user 
 });
 
-Route::prefix('level')->group(function () {
+Route::middleware(['authorize:ADM,OWN'])->prefix('level')->group(function () {
     Route::get('/',[LevelController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[LevelController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[LevelController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -55,7 +68,7 @@ Route::prefix('level')->group(function () {
     Route::delete('/{id}',[LevelController::class,'destroy']);// menghapus data user 
 });
 
-Route::prefix('kategori')->group(function () {
+Route::middleware(['authorize:ADM,OWN'])->prefix('kategori')->group(function () {
     Route::get('/',[KategoriController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[KategoriController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[KategoriController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -73,7 +86,7 @@ Route::prefix('kategori')->group(function () {
 });
 
 
-Route::prefix('barang')->group(function () {
+Route::middleware(['authorize:ADM,OWN'])->prefix('barang')->group(function () {
     Route::get('/',[BarangController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[BarangController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[BarangController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -90,7 +103,7 @@ Route::prefix('barang')->group(function () {
     Route::delete('/{id}',[BarangController::class,'destroy']);// menghapus data user 
 });
 
-Route::prefix('supplier')->group(function () {
+Route::middleware(['authorize:ADM,OWN'])->prefix('supplier')->group(function () {
     Route::get('/',[SupplierController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[SupplierController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[SupplierController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -105,4 +118,5 @@ Route::prefix('supplier')->group(function () {
     Route::get('/{id}/delete_ajax',[SupplierController::class,'confirm_ajax']);// menghapus data user 
     Route::delete('/{id}/delete_ajax',[SupplierController::class,'delete_ajax']);// menghapus data user 
     Route::delete('/{id}',[SupplierController::class,'destroy']);// menghapus data user 
+});
 });
