@@ -1,29 +1,106 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Barang</title>
-</head>
-<body>
-    <h1>Data Barang</h1>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Nama Barang</th>
-                <th>Kategori</th>
-                <th>Harga</th>
-                <th>Stok</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($data as $item)
-            <tr>
-                <td>{{ $item->nama_barang }}</td>
-                <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
-                <td>{{ $item->harga }}</td>
-                <td>{{ $item->stok }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</body>
-</html>
+@extends('layouts.template')
+
+@section('content')
+    <div class="card bg-dark text-white">
+        <div class="card-header bg-dark text-white">
+            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-tools">
+                <div class="card-tools">
+                    {{-- <a href="{{ url('/barang/export_pdf') }}" class="btn btn-sm btn-danger mt-1"><i class="fa fa-file- pdf"></i> Export Barang</a> --}}
+                    <button onclick="modalAction('{{ url('barang/create_ajax') }}')" class="btn btn-sm btn-warning mt-1">Tambah Data</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+            @endif
+            <table class="table table-bordered table-striped table-hover table-sm" id="table_level">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>KategoriBarang</th>
+                        <th>BKode</th>
+                        <th>BNama</th>
+                        <th>Hargabeli</th>
+                        <th>Hargajual</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false" data-width="75%" aria-hidden="true"></div>
+@endsection
+@push('css')
+@endpush
+@push('js')
+    <script>
+        function modalAction(url = '') {
+            $('#myModal').load(url, function() {
+                $('#myModal').modal('show');
+            });
+        }
+        $(document).ready(function() {
+            var dataUser = $('#table_level').DataTable({
+                processing: true,
+                serverSide: true, // Jika ingin menggunakan server-side processing
+                ajax: {
+                    "url": "{{ url('barang/list') }}",
+                    "dataType": "json",
+                    "type": "POST",
+                    "data": function(d) {
+                        d.barang_id = $('#barang_id').val();
+                    }
+                },
+                columns: [{
+                        data: "DT_RowIndex",
+                        className: "text-center",
+                        orderable: false,
+                        searchable: false
+                    }, // Kolom nomor urut
+                    {
+                        data: "kategori.kategori_nama",
+                        className: "",
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: "barang_kode",
+                        className: "",
+                        orderable: true,
+                        searchable: true
+                    },
+                    {
+                        data: "barang_nama",
+                        className: "",
+                        orderable: true,
+                        searchable: true
+                    },
+                    {
+                        data: "harga_beli",
+                        className: "",
+                        orderable: true,
+                        searchable: true
+                    },
+                    {
+                        data: "harga_jual",
+                        className: "",
+                        orderable: true,
+                        searchable: true
+                    },
+                    {
+                        data: "aksi",
+                        className: "",
+                        orderable: false,
+                        searchable: false
+                    } // Tombol aksi
+                ]
+            });
+        });
+    </script>
+@endpush
