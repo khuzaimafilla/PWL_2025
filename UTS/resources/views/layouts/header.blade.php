@@ -11,19 +11,30 @@
     <!-- Kanan -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item d-flex align-items-center ml-3">
+            @php
+                $foto = auth()->user()->photo_profile
+                    ? asset('storage/' . auth()->user()->photo_profile)
+                    : 'https://via.placeholder.com/40x40?text=👤';
+            @endphp
+
+            <!-- Foto Profil -->
+            <img src="{{ $foto }}" alt="Foto Profil" class="rounded-circle mr-2" width="35" height="35" style="object-fit: cover;">
+
+            <!-- Nama Pengguna -->
             <span class="nav-link text-warning" id="username-display">
-                Hi! {{ auth()->user()->username }} <!-- Menampilkan nama pengguna yang login -->
+                Hi! {{ auth()->user()->username }}
             </span>
         </li>
-      <li class="nav-item">
-          <form id="logout-form" action="{{ url('logout') }}" method="GET" class="d-inline">
-              @csrf
-              <button type="button" id="logout-btn" class="btn btn-warning nav-link" style="color: rgb(28, 28, 28);">
-                  <i class="fas fa-sign-out-alt"></i> Logout
-              </button>
-          </form>
-      </li>
+        <li class="nav-item">
+            <form id="logout-form" action="{{ url('logout') }}" method="GET" class="d-inline">
+                @csrf
+                <button type="button" id="logout-btn" class="btn btn-warning nav-link" style="color: rgb(28, 28, 28);">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </form>
+        </li>
     </ul>
+
 </nav>
   
 <!-- Jam -->

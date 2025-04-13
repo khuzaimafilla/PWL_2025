@@ -33,6 +33,8 @@ Route::post('register', [AuthController::class, 'postRegister']);
 
 Route::middleware(['auth'])->group(function(){ 
     Route::get('/', [WelcomeController::class, 'index']);
+    Route::post('/update-photo', [UserController::class, 'update_photo']);          // upload foto
+    Route::post('/delete-photo', [UserController::class, 'delete_photo']);          // hapus foto
 
 Route::prefix('user')->group(function (){
     Route::get('/',[UserController::class,'index']);//menampilkan halaman awal
