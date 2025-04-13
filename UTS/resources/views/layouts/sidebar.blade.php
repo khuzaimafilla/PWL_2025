@@ -23,7 +23,7 @@
               <li class="nav-item">
                   <a href="/level" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
                       <i class="nav-icon fas fa-user-shield text-warning"></i> <!-- Tambahkan text-warning di sini -->
-                      <p>Level User</p>
+                      <p>Data Level</p>
                   </a>
               </li>
 
@@ -59,9 +59,59 @@
                   </a>
               </li>
 
+              <li class="nav-header text-warning">TRANSAKSI MANAGEMENT</li> <!-- Tambahkan text-warning di sini -->
+
+              <li class="nav-item">
+                <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
+                  <i class="nav-icon fas fa-warehouse text-warning"></i> <!-- Tambahkan text-warning di sini -->
+                    <p>Data Stok</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
+                  <i class="nav-icon fas fa-cash-register text-warning"></i> <!-- Tambahkan text-warning di sini -->
+                    <p>Data Penjualan</p>
+                </a>
+            </li>
+
+            <li class="nav-header text-warning">HISTORY</li> <!-- Tambahkan text-warning di sini -->
+
+            <li class="nav-item">
+              <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
+                <i class="nav-icon fas fa-user-clock text-warning"></i> <!-- Tambahkan text-warning di sini -->
+                  <p>User Activity Log</p>
+              </a>
+          </li>
           </ul>
       </nav>
       <!-- /.sidebar-menu -->
   </div>
+  <div class="dino-maskot">
+    <img src="{{ asset('img/dino.png') }}" alt="Dino Maskot">
+  </div>
   <!-- /.sidebar -->
 </aside>
+
+<style>
+  .dino-maskot {
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    z-index: 10;
+    width: 140px;
+    animation: breathe-realistic 2s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+
+  .dino-maskot img {
+    width: 100%;
+    filter: drop-shadow(0 0 4px rgba(255, 193, 7, 0.5));
+  }
+
+  @keyframes breathe-realistic {
+  0%   { transform: scaleX(1) scaleY(1); }
+  50%  { transform: scaleX(0.95) scaleY(1.12); }
+  100% { transform: scaleX(1) scaleY(1); }
+}
+</style>
