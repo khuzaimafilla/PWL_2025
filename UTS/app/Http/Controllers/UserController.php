@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LevelModel;
 use App\Models\UserModel;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -303,5 +304,21 @@ class UserController extends Controller
             }
         }
         return redirect('/');
+    }
+
+    public function export_pdf()
+    {
+        $user = UserModel::select('level_id', 'username', 'nama', 'password')
+                         ->orderBy('level_id')
+                         ->with('level')
+                         ->get();
+    
+        // use Barryvdh\DomPDF\Facade\Pdf;
+        $pdf = Pdf::loadView('user.export_pdf', ['user' => $user]);
+        $pdf->setPaper('a4', 'portrait'); 
+        $pdf->setOption("isRemoteEnabled", true);
+        $pdf->render();
+    
+        return $pdf->stream('Data User'.date('Y-m-d H:i:s').'.pdf');
     }
 }

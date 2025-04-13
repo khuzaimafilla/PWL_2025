@@ -5,7 +5,7 @@
         <div class="card-header bg-dark text-white">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                {{-- <a href="{{ url('/user/export_pdf') }}" class="btn btn-sm btn-danger mt-1"><i class="fa fa-file- pdf"></i> Export User</a> --}}
+                <a href="{{ url('/user/export_pdf') }}" class="btn btn-sm btn-danger mt-1"><i class="fa fa-file- pdf"></i> Export PDF</a>
                 <button onclick="modalAction('{{ url('user/create_ajax') }}')" class="btn btn-sm btn-warning mt-1">Tambah Data</button>
             </div>
         </div>
