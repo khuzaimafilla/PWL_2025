@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class KategoriModel extends Model
 {
-    protected $table = 'm_kategori';
+    use HasFactory;
 
-    public function barangs()
-    {
-        return $this->hasMany(BarangModel::class, 'kategori_id');
-    }
+    protected $table = 'm_kategori';
+    protected $primaryKey = 'kategori_id';
+    protected $fillable = [];
+    protected $guarded = [];
+
 }
 

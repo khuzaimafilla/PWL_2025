@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class LevelModel extends Model
 {
-    protected $table = 'm_level';
+    use HasFactory;
 
-    public function users()
-    {
-        return $this->hasMany(UserModel::class, 'level_id');
-    }
+    protected $table = 'm_level';
+    protected $fillable = [];
+    protected $primaryKey = 'level_id';
+    protected $guarded = [] ;
 }

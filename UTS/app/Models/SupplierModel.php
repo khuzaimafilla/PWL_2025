@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SupplierModel extends Model
 {
-    protected $table = 'm_supplier';
+    use HasFactory;
 
-    public function barangs()
-    {
-        return $this->hasMany(BarangModel::class, 'supplier_id');
-    }
+    protected $table = 'm_supplier';
+    protected $fillable = [];
+    protected $primaryKey ='supplier_id';
+    protected $guarded = [];
+
 }

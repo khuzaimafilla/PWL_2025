@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BarangModel extends Model
 {
+    use HasFactory;
+
     protected $table = 'm_barang';
+    protected $fillable = [];
+    protected $primaryKey = 'barang_id';
+    protected $guarded =[];
 
-    public function kategori()
+    public function kategori(): BelongsTo 
     {
-        return $this->belongsTo(KategoriModel::class, 'kategori_id');
-    }
-
-    public function detailPenjualan()
-    {
-        return $this->hasMany(DetailPenjualanModel::class, 'barang_id');
+        return $this->belongsTo(KategoriModel::class,'kategori_id','kategori_id');
     }
 }
 
