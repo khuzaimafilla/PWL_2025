@@ -7,7 +7,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <meta name="csrf-token" content="{{ csrf_token() }}"> <!--untuk mengirimkan token laravel CSRF pada setiap requst aja -->
+  <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Token CSRF -->
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,12 +19,12 @@
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-  <!-- Theme style -->
+  <!-- AdminLTE Theme -->
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 
-  @stack('css') <!-- Digunakan untuk memanggil custom css dari perintah push('css') pada masing-masing view -->
+  @stack('css') <!-- Custom CSS -->
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini dark-mode">
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -45,7 +45,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper bg-dark text-white">
     <!-- Content Header (Page header) -->
     @include('layouts.breadcrumb')
 
@@ -89,9 +89,9 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
 <script>
-  // Untuk mengirimkan token Laravel CSRF pada setiap request ajax
+  // Kirim token CSRF Laravel pada setiap request ajax
   $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 </script>
-@stack('js') <!-- Digunakan untuk memanggil custom js dari perintah push('js') pada masing-masing view -->
+@stack('js') <!-- Custom JS -->
 </body>
 </html>

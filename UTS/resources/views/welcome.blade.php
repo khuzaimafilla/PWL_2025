@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Kartu Profil dan Selamat Datang -->
-<div class="card shadow-lg border-0 rounded-lg mt-4">
+<div class="card shadow-lg border-0 rounded-lg mt-4 bg-dark text-white">
     <div class="card-body">
         <div class="row">
             <!-- Bagian Foto Profil dan Aksi -->
@@ -20,23 +20,23 @@
                 <form action="{{ url('/update-photo') }}" method="POST" enctype="multipart/form-data" class="mb-2">
                     @csrf
                     <input type="file" name="photo_profile" id="photo_profile" class="form-control mb-2" accept="image/*" onchange="previewPhoto()" required>
-                    <button type="submit" class="btn btn-primary w-100">Change Photo</button>
+                    <button type="submit" class="btn btn-warning w-100">Change Photo</button>
                 </form>
 
                 <!-- Tombol Hapus Foto -->
                 @if(Auth::user()->photo_profile)
                     <form action="{{ url('/delete-photo') }}" method="POST" class="mb-2">
                         @csrf
-                        <button type="submit" class="btn btn-outline-danger w-100">Delete Photo</button>
+                        <button type="submit" class="btn btn-danger w-100">Delete Photo</button>
                     </form>
                 @endif
             </div>
 
             <!-- Bagian Informasi Pengguna -->
             <div class="col-md-8">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-dark">
                     <tr>
-                        <th><i class="fas fa-id-card"></i> User ID</th>
+                        <th><i class="fas fa-id-badge"></i> User ID</th>
                         <td>{{ $user->user_id }}</td>
                     </tr>
                     <tr>
@@ -44,13 +44,13 @@
                         <td>{{ $user->username }}</td>
                     </tr>
                     <tr>
-                        <th><i class="fas fa-user-tag"></i> Nama</th>
+                        <th><i class="fas fa-signature"></i> Nama</th>
                         <td>{{ $user->nama }}</td>
                     </tr>
                     <tr>
-                        <th><i class="fas fa-shield-alt"></i> Role</th>
+                        <th><i class="fas fa-user-shield"></i> Role</th>
                         <td>{{ $user->level->level_nama }}</td>
-                    </tr>x  
+                    </tr>
                 </table>
             </div>
         </div>
