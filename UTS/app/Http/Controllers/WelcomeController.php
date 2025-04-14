@@ -21,16 +21,13 @@ class WelcomeController extends Controller
         $supplierCount = SupplierModel::count();
 
         $breadscrumb = (object)[
-            'title' => 'Profil Pengguna',
-            'list'  => ['Home', 'Profile'],
+            'title' => 'Dashboard',
+            'list'  => ['Home', 'Dashboard'],
         ];
 
         $activeMenu = 'dashboard';
 
-        // Ambil user yang sedang login
-        $user = Auth::user();
-
-        return view('welcome', [ 'breadcrumb' => $breadscrumb, 'activeMenu' => $activeMenu,'user' => $user, 
+        return view('welcome', [ 'breadcrumb' => $breadscrumb, 'activeMenu' => $activeMenu, 
         'levelCount'    => $levelCount,
         'userCount'     => $userCount,
         'kategoriCount' => $kategoriCount,

@@ -6,71 +6,6 @@
 <div class="card shadow-lg border-0 rounded-lg mt-4 bg-dark text-white">
     <div class="card-body">
         <div class="row">
-            <!-- Bagian Foto Profil dan Aksi -->
-            <div class="container mt-4">
-                <div class="row justify-content-center">
-                    <!-- Foto Profil -->
-                    <div class="col-md-2 text-center">
-                        @php
-                            $foto = Auth::user()->photo_profile
-                                ? asset('storage/' . Auth::user()->photo_profile)
-                                : asset('img/defaultAvatar.png');
-                        @endphp
-            
-                        <img src="{{ $foto }}" id="preview-image" class="img-thumbnail mb-3" width="250" alt="Foto Profil">
-            
-                        <!-- Form Upload -->
-                        <form action="{{ url('/update-photo') }}" method="POST" enctype="multipart/form-data" class="mb-2">
-                            @csrf
-                            <input type="file" name="photo_profile" id="photo_profile" class="form-control mb-2" accept="image/*" onchange="previewPhoto()" required>
-                            <button type="submit" class="btn btn-warning w-100">Change Photo</button>
-                        </form>
-            
-                        <!-- Hapus Foto -->
-                        @if(Auth::user()->photo_profile)
-                            <form action="{{ url('/delete-photo') }}" method="POST" class="mb-2">
-                                @csrf
-                                <button type="submit" class="btn btn-danger w-100">Delete Photo</button>
-                            </form>
-                        @endif
-                    </div>
-            
-                    <!-- Informasi Pengguna -->
-                    <div class="col-md-10">
-                        <div class="card bg-dark text-white shadow">
-                            <div class="card-header">
-                                <h5 class="mb-0"><i class="fas fa-user-circle"></i> Informasi Pengguna</h5>
-                            </div>
-                            <div class="card-body p-0">
-                                <table class="table table-bordered table-dark mb-0">
-                                    <tr>
-                                        <th><i class="fas fa-id-badge"></i> User ID</th>
-                                        <td>{{ $user->user_id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="fas fa-user"></i> Username</th>
-                                        <td>{{ $user->username }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="fas fa-signature"></i> Nama</th>
-                                        <td>{{ $user->nama }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="fas fa-user-shield"></i> Role</th>
-                                        <td>{{ $user->level->level_nama }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="fas fa-user-shield"></i> Role</th>
-                                        <td>{{ $user->level->level_nama }}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
             <div class="container mt-4">
                 <div class="row g-3">
                     <!-- Data Level -->
@@ -119,9 +54,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
+                <!-- Bar Chart untuk Jumlah Data -->
+                <div class="card mt-4 shadow border-0">
+                    <div class="card-body">
+                        <h5 class="text-center mb-4">Statistik Jumlah Data</h5>
+                        <div style="height: 200px;">
+                        <canvas id="dataChart"></canvas>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
         </div>
 
         <!-- Alert -->
@@ -159,5 +102,59 @@
         }
     }
 </script>
+
+{{-- Script barchart --}}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('dataChart').getContext('2d');
+    const dataChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Level', 'User', 'Kategori', 'Barang', 'Supplier'],
+            datasets: [{
+                label: 'Jumlah Data',
+                data: [
+                    {{ $levelCount }},
+                    {{ $userCount }},
+                    {{ $kategoriCount }},
+                    {{ $barangCount }},
+                    {{ $supplierCount }}
+                ],
+                backgroundColor: [
+                    '#f39c12',
+                    '#f39c12',
+                    '#f39c12',
+                    '#f39c12',
+                    '#f39c12'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return ' ' + context.parsed.y + ' data';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        precision:0,
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+</script>
+
 
 @endsection

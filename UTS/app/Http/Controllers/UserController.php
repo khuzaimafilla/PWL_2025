@@ -5,6 +5,7 @@ use App\Models\LevelModel;
 use App\Models\UserModel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -321,6 +322,28 @@ class UserController extends Controller
         $pdf->render();
     
         return $pdf->stream('Data User'.date('Y-m-d H:i:s').'.pdf');
+    }
+
+    public function profil(){
+         // Ambil user yang sedang login
+         $user = Auth::user();
+
+         if (!$user) {
+            return redirect('/login')->with('error', 'Silahkan login terlebih dahulu');
+            }
+
+        $breadcrumb = (object) [
+            'title' => 'Profile User',
+            'list' => ['Home', 'Profile']
+        ];
+
+        $page = (object) [
+            'title' => 'Profil Pengguna'
+        ];
+
+        $activeMenu = 'profile';
+
+        return view('profil', compact('user', 'breadcrumb', 'page', 'activeMenu'));
     }
 
     public function update_photo(Request $request)

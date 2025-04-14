@@ -76,7 +76,7 @@
     <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="{{ url('/') }}" class="h1" style="color: #ffcc00;"><b>Admin</b>LTE</a>
+                <a href="{{ url('/') }}" class="h1" style="color: #ffcc00;"><b>POS</b> UTS</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Daftar Pengguna Baru</p>

@@ -14,8 +14,17 @@
               <li class="nav-item">
                   <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
                       <i class="nav-icon fas fa-home text-warning"></i> <!-- Tambahkan text-warning di sini -->
-                      <p>Home</p>
+                      <p>Dashboard</p>
                   </a>
+              </li>
+
+              <li class="nav-header text-warning">PROFIL</li> <!-- Tambahkan text-warning di sini -->
+
+              <li class="nav-item">
+                <a href="/profil" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
+                    <i class="nav-icon fas fa-user text-warning"></i> <!-- Tambahkan text-warning di sini -->
+                    <p>Profil Pengguna</p>
+                </a>
               </li>
 
               <li class="nav-header text-warning">USER MANAGEMENT</li> <!-- Tambahkan text-warning di sini -->
@@ -58,22 +67,6 @@
                       <p>Data Supplier</p>
                   </a>
               </li>
-
-              <li class="nav-header text-warning">TRANSAKSI MANAGEMENT</li> <!-- Tambahkan text-warning di sini -->
-
-              <li class="nav-item">
-                <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
-                  <i class="nav-icon fas fa-warehouse text-warning"></i> <!-- Tambahkan text-warning di sini -->
-                    <p>Data Stok</p>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
-                  <i class="nav-icon fas fa-cash-register text-warning"></i> <!-- Tambahkan text-warning di sini -->
-                    <p>Data Penjualan</p>
-                </a>
-            </li>
           </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -88,9 +81,9 @@
   .dino-maskot {
     position: absolute;
     bottom: -10px;
-    left: 30px;
+    left: 25px;
     z-index: 10;
-    width: 200px;
+    width: 220px;
     animation: breathe-realistic 2s ease-in-out infinite;
     transform-origin: bottom center;
   }
