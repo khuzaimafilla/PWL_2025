@@ -74,15 +74,6 @@
                     <p>Data Penjualan</p>
                 </a>
             </li>
-
-            <li class="nav-header text-warning">HISTORY</li> <!-- Tambahkan text-warning di sini -->
-
-            <li class="nav-item">
-              <a href="/" class="nav-link text-warning"> <!-- Tambahkan text-warning di sini -->
-                <i class="nav-icon fas fa-user-clock text-warning"></i> <!-- Tambahkan text-warning di sini -->
-                  <p>User Activity Log</p>
-              </a>
-          </li>
           </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -97,9 +88,9 @@
   .dino-maskot {
     position: absolute;
     bottom: -10px;
-    left: 10px;
+    left: 30px;
     z-index: 10;
-    width: 140px;
+    width: 200px;
     animation: breathe-realistic 2s ease-in-out infinite;
     transform-origin: bottom center;
   }

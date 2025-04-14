@@ -73,6 +73,10 @@ class AuthController extends Controller
             'level_id' => $request->level_id
         ]);
     
-        return redirect('login')->with('success', 'Registrasti berhasil ditambahkan');
+        return response()->json([
+            'status' => true,
+            'message' => 'Registrasi berhasil!',
+            'redirect' => route('login') // Ubah sesuai route login kamu
+        ]);
     }
 }

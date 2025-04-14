@@ -14,7 +14,7 @@
             @php
                 $foto = auth()->user()->photo_profile
                     ? asset('storage/' . auth()->user()->photo_profile)
-                    : 'https://via.placeholder.com/40x40?text=👤';
+                    : asset('img/defaultAvatar.png'); 
             @endphp
 
             <!-- Foto Profil -->
