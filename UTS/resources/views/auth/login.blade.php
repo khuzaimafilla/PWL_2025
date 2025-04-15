@@ -121,9 +121,6 @@
     </div>
   </div>
 
-  <!-- Background Music -->
-  <audio id="bg-music" src="{{ asset('audio/dino-theme.mp3') }}" autoplay loop></audio>
-
   <!-- Scripts -->
   <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -194,21 +191,6 @@
           $(element).removeClass('is-invalid');
         }
       });
-    });
-
-    const music = document.getElementById('bg-music');
-
-    // Beberapa browser butuh interaksi user dulu, ini buat auto-play lebih smooth
-    document.addEventListener('DOMContentLoaded', () => {
-        const playMusic = () => {
-            music.play().catch(() => {
-                // Jika browser block autoplay, akan play setelah klik pertama
-                document.addEventListener('click', () => {
-                    music.play();
-                }, { once: true });
-            });
-        };
-        playMusic();
     });
   </script>
 </body>

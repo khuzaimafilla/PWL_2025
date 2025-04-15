@@ -44,23 +44,19 @@
                             <div class="card-body p-0">
                                 <table class="table table-bordered table-dark mb-0">
                                     <tr>
-                                        <th><i class="fas fa-id-badge"></i> Username</th>
+                                        <th><i class="fas fa-id-badge"></i> ID</th>
+                                        <td>{{ $user->user_id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><i class="fas fa-user"></i> Username</th>
                                         <td>{{ $user->username }}</td>
                                     </tr>
                                     <tr>
-                                        <th><i class="fas fa-user"></i> Nama</th>
+                                        <th><i class="fas fa-signature"></i> Nama</th>
                                         <td>{{ $user->nama }}</td>
                                     </tr>
                                     <tr>
-                                        <th><i class="fas fa-signature"></i> Role</th>
-                                        <td>{{ $user->level->level_nama }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="fas fa-user-shield"></i> Email</th>
-                                        <td>{{ $user->level->level_nama }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th><i class="fas fa-user-shield"></i> Nomor Telepon</th>
+                                        <th><i class="fas fa-user-shield"></i> Role</th>
                                         <td>{{ $user->level->level_nama }}</td>
                                     </tr>
                                 </table>
