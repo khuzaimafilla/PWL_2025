@@ -5,10 +5,10 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <button onclick="modalAction('{{ url('/penjualan/import') }}')" class="btn btn-info">Import Penjualan</button>
-                <a href="{{ url('/penjualan/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i>Export Penjualan</a>
-                <a href="{{ url('/penjualan/export_pdf') }}" class="btn btn-warning"><i class="fa fa-file-pdf"></i> Export Penjualan</a>
-                <button onclick="modalAction('{{ url('/penjualan/create_ajax') }}')" class="btn btn-success">Tambah Data (Ajax)</button>
+                <a href="{{ url('/penjualan/export_excel') }}" class="btn btn-danger">Export Excel</a>
+                <button onclick="modalAction('{{ url('/penjualan/import') }}')" class="btn btn-warning">Import Penjualan</button>
+                <a href="{{ url('/penjualan/export_pdf') }}" class="btn btn-danger">Export PDF</a>
+                <button onclick="modalAction('{{ url('/penjualan/create_ajax') }}')" class="btn btn-warning">Tambah Data</button>
             </div>
         </div>
         <div class="card-body">

@@ -5,8 +5,10 @@
         <div class="card-header bg-dark text-white">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a href="{{ url('/level/export_pdf') }}" class="btn btn-sm btn-danger mt-1"><i class="fa fa-file- pdf"></i> Export PDF</a>
-                <button onclick="modalAction('{{ url('supplier/create_ajax') }}')" class="btn btn-sm btn-warning mt-1">Tambah Data</button>
+                <a href="{{ url('/supplier/export_excel') }}" class="btn btn-danger">Export Excel</a>
+                <button onclick="modalAction('{{ url('/supplier/import') }}')" class="btn btn-warning">Import Penjualan</button>
+                <a href="{{ url('/supplier/export_pdf') }}" class="btn btn-danger">Export PDF</a>
+                <button onclick="modalAction('{{ url('/supplier/create_ajax') }}')" class="btn btn-warning">Tambah Data</button>
             </div>
         </div>
         <div class="card-body">

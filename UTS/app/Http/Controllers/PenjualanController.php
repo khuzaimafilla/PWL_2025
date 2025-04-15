@@ -41,7 +41,7 @@ class PenjualanController extends Controller
         return DataTables::of($penjualan)
             ->addIndexColumn() 
             ->addColumn('aksi', function ($penjualan) {
-                $btn = '<button onclick="modalAction(\''.url('/penjualan/' . $penjualan->penjualan_id . '/show_ajax').'\')" class="btn btn-info btn-sm">Detail</button> ';
+                $btn = '<button onclick="modalAction(\''.url('/penjualan/' . $penjualan->penjualan_id . '/show_ajax').'\')" class="btn btn-warning btn-sm">Detail</button> ';
                 $btn .= '<button onclick="modalAction(\''.url('/penjualan/' . $penjualan->penjualan_id . '/edit_ajax').'\')" class="btn btn-warning btn-sm">Edit</button> ';
                 $btn .= '<button onclick="modalAction(\''.url('/penjualan/' . $penjualan->penjualan_id . '/delete_ajax').'\')" class="btn btn-danger btn-sm">Hapus</button> ';
                 return $btn;
@@ -403,4 +403,5 @@ class PenjualanController extends Controller
     
         return $pdf->stream('Data Penjualan '.date('Y-m-d H:i:s').'.pdf');
     }
+    
 }

@@ -52,9 +52,9 @@
 </head>
 <body>
     <table class="border-bottom-header">
-        <tr>
+        <tr> 
             <td width="15%" class="text-center">
-                <img src="{{ asset('/img/logo.png') }}" style="width: 120px; height: auto;">
+                <img src="file://{{ public_path('/img/logo.png') }}" alt="Logo Polinema" style="width: 120px; height: auto;">
             </td>
             <td width="85%">
                 <span class="text-center d-block font-11 font-bold mb-1">

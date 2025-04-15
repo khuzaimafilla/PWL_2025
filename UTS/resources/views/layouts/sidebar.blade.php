@@ -59,6 +59,13 @@
                   </a>
               </li>
 
+              <li class="nav-item">
+                <a href="/stok" class="nav-link text-warning">
+                    <i class="nav-icon fas fa-boxes text-warning"></i>
+                    <p>Stok</p>
+                </a>
+            </li>
+
               <li class="nav-header text">SUPPLIER MANAGEMENT</li>
 
               <li class="nav-item">
@@ -70,17 +77,17 @@
 
               <li class="nav-header">TRANSAKSI</li> 
 
-              <li class="nav-item">
-                <a href="/stok" class="nav-link text-warning">
-                    <i class="nav-icon fas fa-boxes text-warning"></i>
-                    <p>Stok</p>
-                </a>
-            </li>
-
             <li class="nav-item">
                 <a href="/penjualan" class="nav-link text-warning">
                     <i class="nav-icon fas fa-shopping-cart text-warning"></i>
                     <p>Penjualan</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/detail_penjualan" class="nav-link text-warning">
+                    <i class="nav-icon fas fa-receipt text-warning"></i>
+                    <p>Detail Penjualan</p>
                 </a>
             </li>
 
