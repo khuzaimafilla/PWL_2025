@@ -7,105 +7,110 @@
                 <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <!-- Section Pembeli -->
-                <div class="card mb-4">
-                    <div class="card-header bg-light">
-                        <h6 class="mb-0"><i class="fas fa-user mr-2"></i>Data Pembeli</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Nama Pembeli<span
-                                    class="text-danger">*</span></label>
-                            <div class="col-md-9">
-                                <input type="text" name="pembeli" class="form-control"
-                                    placeholder="Masukkan nama pembeli" required>
-                                <small class="text-danger" id="error-pembeli"></small>
+                <div class="row">
+                    <!-- Bagian Kiri -->
+                    <div class="col-md-4">
+                        <!-- Section Pembeli -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-warning">
+                                <h6 class="mb-0"><i class="fas fa-user mr-2"></i>Data Pembeli</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Nama Pembeli<span class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="pembeli" class="form-control" placeholder="Masukkan nama pembeli" required>
+                                        <small class="text-danger" id="error-pembeli"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section Barang -->
+                        <div class="card mb-4">
+                            <div class="card-header bg-warning">
+                                <h6 class="mb-0"><i class="fas fa-box mr-2"></i>Data Barang</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Pilih Barang<span class="text-danger">*</span></label>
+                                    <div class="col-md-8">
+                                        <select id="select-barang" class="form-control select2">
+                                            <option value="">- Pilih Barang -</option>
+                                            @foreach ($barang as $b)
+                                                <option value="{{ $b->barang_id }}"
+                                                        data-harga="{{ $b->harga_jual }}"
+                                                        data-stok="{{ $b->stok ? $b->stok->stok_jumlah : 0 }}"
+                                                        data-nama="{{ $b->barang_nama }}">
+                                                    {{ $b->barang_nama }}
+                                                    (Rp {{ number_format($b->harga_jual, 0, ',', '.') }})
+                                                    @if($b->stok)
+                                                        - Stok: {{ $b->stok->stok_jumlah }}
+                                                    @else
+                                                        - Stok: 0
+                                                    @endif
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-sm btn-warning" onclick="addItem()">
+                                        <i class="fas fa-plus mr-1"></i>Keranjang
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Section Barang -->
-                <div class="card mb-4">
-                    <div class="card-header bg-light">
-                        <h6 class="mb-0"><i class="fas fa-box mr-2"></i>Data Barang</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-md-3 col-form-label">Pilih Barang<span
-                                    class="text-danger">*</span></label>
-                            <div class="col-md-9">
-                                <select id="select-barang" class="form-control select2">
-                                    <option value="">- Pilih Barang -</option>
-                                    @foreach ($barang as $b)
-                                        <option value="{{ $b->barang_id }}" data-harga="{{ $b->harga_jual }}"
-                                            data-stok="{{ $b->stok ? $b->stok->stok_jumlah : 0 }}"
-                                            data-nama="{{ $b->barang_nama }}">
-                                            {{ $b->barang_nama }}
-                                            (Rp {{ number_format($b->harga_jual, 0, ',', '.') }})
-                                            @if($b->stok)
-                                                - Stok: {{ $b->stok->stok_jumlah }}
-                                            @else
-                                                - Stok: 0
-                                            @endif
-                                        </option>
-                                    @endforeach
-                                </select>
+                    <!-- Bagian Kanan -->
+                    <div class="col-md-8">
+                        <div class="card mb-4 h-100">
+                            <div class="card-header bg-dark">
+                                <h6 class="mb-0"><i class="fas fa-shopping-cart mr-2"></i>Keranjang Belanja</h6>
                             </div>
-                        </div>
-                        <div class="text-right">
-                            <button type="button" class="btn btn-sm btn-success" onclick="addItem()">
-                                <i class="fas fa-plus mr-1"></i>Keranjang
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Daftar Item -->
-                <div class="card">
-                    <div class="card-header bg-light">
-                        <h6 class="mb-0"><i class="fas fa-shopping-cart mr-2"></i>Keranjang Belanja</h6>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover mb-0">
-                                <thead class="bg-light">
-                                    <tr>
-                                        <th width="35%">Nama Barang</th>
-                                        <th width="20%">Harga Satuan</th>
-                                        <th width="15%">Jumlah</th>
-                                        <th width="20%">Subtotal</th>
-                                        <th width="15%">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="items-list" class="small"></tbody>
-                            </table>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover mb-0">
+                                        <thead class="bg-warning">
+                                            <tr>
+                                                <th width="35%">Nama Barang</th>
+                                                <th width="20%">Harga</th>
+                                                <th width="15%">Jumlah</th>
+                                                <th width="20%">Subtotal</th>
+                                                <th width="10%">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="items-list" class="small"></tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Total -->
-                <div class="alert alert-success mt-4 p-3">
+                <div class="alert alert-warning mt-3">
                     <div class="row">
                         <div class="col-md-6">
                             <h4 class="mb-0">Total: <span id="total" class="font-weight-bold">Rp 0</span></h4>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 text-right">
+                            <!-- Kosongkan atau isi jika ada tambahan info -->
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    <i class="fas fa-times mr-1"></i>Batal
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save mr-1"></i>Simpan Transaksi
-                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-warning">Simpan Transaksi</button>
             </div>
         </div>
     </div>
 </form>
+
 
 <script>
     $(document).ready(function () {
