@@ -60,7 +60,7 @@ Route::prefix('user')->group(function (){
     Route::get('/export_pdf', [UserController::class, 'export_pdf']);// export pdf
 });
 
-Route::middleware(['authorize:ADM,OWN'])->prefix('level')->group(function () {
+Route::middleware(['authorize:ADM'])->prefix('level')->group(function () {
     Route::get('/',[LevelController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[LevelController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[LevelController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -81,7 +81,7 @@ Route::middleware(['authorize:ADM,OWN'])->prefix('level')->group(function () {
     Route::get('/export_pdf', [LevelController::class, 'export_pdf']);               //export pdf
 });
 
-Route::middleware(['authorize:ADM,OWN'])->prefix('kategori')->group(function () {
+Route::middleware(['authorize:ADM,MNG'])->prefix('kategori')->group(function () {
     Route::get('/',[KategoriController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[KategoriController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[KategoriController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -103,7 +103,7 @@ Route::middleware(['authorize:ADM,OWN'])->prefix('kategori')->group(function () 
 });
 
 
-Route::middleware(['authorize:ADM,OWN'])->prefix('barang')->group(function () {
+Route::middleware(['authorize:ADM,MNG,STF'])->prefix('barang')->group(function () {
     Route::get('/',[BarangController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[BarangController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[BarangController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -124,7 +124,7 @@ Route::middleware(['authorize:ADM,OWN'])->prefix('barang')->group(function () {
     Route::get('/export_pdf', [BarangController::class, 'export_pdf']);               //export pdf
 });
 
-Route::middleware(['authorize:ADM,OWN'])->prefix('supplier')->group(function () {
+Route::middleware(['authorize:ADM,MNG'])->prefix('supplier')->group(function () {
     Route::get('/',[SupplierController::class,'index']);//menampilkan halaman awal
     Route::post('/list',[SupplierController::class,'list']);//menampilkan data user bentuk json / datatables
     Route::get('/create',[SupplierController::class,'create']);// meanmpilkan bentuk form untuk tambah user
@@ -145,7 +145,7 @@ Route::middleware(['authorize:ADM,OWN'])->prefix('supplier')->group(function () 
     Route::get('/export_pdf', [SupplierController::class, 'export_pdf']);               //export pdf
 });
 
-Route::middleware(['authorize:ADM,OWN'])->prefix('stok')->group(function () {
+Route::middleware(['authorize:ADM,MNG,STF'])->prefix('stok')->group(function () {
     Route::get('/', [StokController::class, 'index']);       
     Route::post('/list', [StokController::class, 'list']);    
     Route::get('/create', [StokController::class, 'create']); 
@@ -167,7 +167,7 @@ Route::middleware(['authorize:ADM,OWN'])->prefix('stok')->group(function () {
     Route::get('/export_pdf', [StokController::class, 'export_pdf']);
 });
 
-Route::middleware(['authorize:ADM,OWN'])->prefix('penjualan')->group(function () {
+Route::middleware(['authorize:ADM,MNG,STF'])->prefix('penjualan')->group(function () {
     Route::get('/', [PenjualanController::class, 'index']);       
     Route::post('/list', [PenjualanController::class, 'list']);    
     Route::get('/create', [PenjualanController::class, 'create']); 
