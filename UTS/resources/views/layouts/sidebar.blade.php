@@ -83,14 +83,6 @@
                     <p>Penjualan</p>
                 </a>
             </li>
-
-            <li class="nav-item">
-                <a href="/detail_penjualan" class="nav-link text-warning">
-                    <i class="nav-icon fas fa-receipt text-warning"></i>
-                    <p>Detail Penjualan</p>
-                </a>
-            </li>
-
           </ul>
       </nav>
       <!-- /.sidebar-menu -->

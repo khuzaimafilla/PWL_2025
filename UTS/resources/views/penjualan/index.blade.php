@@ -5,9 +5,9 @@
         <div class="card-header">
             <h3 class="card-title">Daftar Transaksi Penjualan</h3>
             <div class="card-tools">
-                <a href="{{ url('/penjualan/export_excel') }}" class="btn btn-primary"><i class="fa fa-file-excel"></i>Export Transaksi Penjualan</a>
-                <button onclick="modalAction('{{ url('penjualan/create_ajax') }}')" class="btn btn-success">
-                    <i class="fas fa-cash-register"></i> Transaksi Baru
+                <a href="{{ url('/penjualan/export_excel') }}" class="btn btn-danger">Export Transaksi Penjualan</a>
+                <button onclick="modalAction('{{ url('penjualan/create_ajax') }}')" class="btn btn-warning">
+                    Tambah Transaksi
                 </button>
             </div>
         </div>
@@ -19,6 +19,23 @@
             @if(session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <label class="col-1 control-label col-form-label">Filter:</label>
+                        <div class="col-3">
+                            <select class="form-control" id="user_id" name="user_id" required>
+                                <option value="">- Semua</option>
+                                @foreach ($user as $item)
+                                    <option value="{{ $item->user_id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                            <small class="form-text text-muted">Kasir</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <table class="table table-bordered table-sm table-striped table-hover" id="table-penjualan">
                 <thead>
@@ -64,6 +81,7 @@
                     url: "{{ url('penjualan/list') }}",
                     type: "POST",
                     data: function (d) {
+                        d.user_id = $('#user_id').val();
                         d._token = "{{ csrf_token() }}";
                     }
                 },
@@ -124,6 +142,10 @@
                     tablePenjualan.search(this.value).draw();
                 }
             });
+
+            $('#user_id').on('change', function(){
+                tablePenjualan.ajax.reload();
+            })
         });
     </script>
 @endpush

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserModel;
 use App\Models\BarangModel;
 use App\Models\PenjualanDetailModel;
 use App\Models\PenjualanModel;
@@ -20,10 +21,12 @@ class PenjualanController extends Controller
             'title' => 'Data Transaksi Penjualan',
             'list' => ['Home', 'Penjualan']
         ];
+        $user = UserModel::all();
 
         return view('penjualan.index', [
             'activeMenu' => $activeMenu,
-            'breadcrumb' => $breadcrumb
+            'breadcrumb' => $breadcrumb,
+            'user' => $user,
         ]);
     }
 
@@ -32,6 +35,10 @@ class PenjualanController extends Controller
         try {
             $penjualan = PenjualanModel::with(['user', 'PenjualanDetail'])
                 ->select('t_penjualan.*');
+
+            if($request->user_id){
+                $penjualan->where('user_id', $request->user_id);
+            }
 
             return DataTables::eloquent($penjualan)
                 ->addIndexColumn()
@@ -51,7 +58,7 @@ class PenjualanController extends Controller
                 ->addColumn('nama', fn($s) => $s->user->nama ?? 'System')
                 ->addColumn('aksi', function ($s) {
                     return '<div class="text-center">' .
-                        '<button onclick="showDetail(\'' . url('/penjualan/'. $s->penjualan_id . '/show_ajax').'\')" class="btn btn-sm btn-info mr-1">Detail</button>' .
+                        '<button onclick="showDetail(\'' . url('/penjualan/'. $s->penjualan_id . '/show_ajax').'\')" class="btn btn-sm btn-warning mr-1">Detail</button>' .
                         '<button onclick="modalAction(\'' . url('/penjualan/'. $s->penjualan_id . '/delete_ajax').'\')" class="btn btn-sm btn-danger">Hapus</button>' .
                         '</div>';
                 })
