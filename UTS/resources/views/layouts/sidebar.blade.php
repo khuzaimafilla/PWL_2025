@@ -5,6 +5,17 @@
       <span class="brand-text font-weight-bold">UTS Point Of Sales</span>
   </a>
 
+  <div class="form mt-2">
+    <div class="input-group" data-widget="sidebar-search">
+      <input class="form-control form-control-sidebar" type="search" placeholder="Cari Menu" aria-label="Search">
+      <div class="input-group-append">
+        <button class="btn btn-warning">
+          <i class="fas fa-search fa-fw"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
   <!-- Sidebar -->
   <div class="sidebar">
       <!-- Sidebar Menu -->
@@ -87,3 +98,30 @@
       </nav>
       <!-- /.sidebar-menu -->
 </aside>
+
+<script>
+    document.getElementById('navbar-search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+  
+        // Menentukan URL
+        const menuRoutes = {
+            'dashboard': '{{ url("/") }}',
+            'profile': '{{ url("/profile") }}',
+            'level': '{{ url("/level") }}',
+            'user': '{{ url("/user") }}',
+            'kategori': '{{ url("/kategori") }}',
+            'barang': '{{ url("/barang") }}',
+            'stok': '{{ url("/stok") }}',
+            'supplier': '{{ url("/supplier") }}',
+            'penjualan': '{{ url("/penjualan") }}',
+        };
+  
+        // Check jika pesan sesuai url
+        if (menuRoutes[searchInput]) {
+            window.location.href = menuRoutes[searchInput]; // Redirect ke menu sesuai url
+        } else {
+            alert('Menu not found! Please try another keyword.');
+        }
+    });
+  </script>

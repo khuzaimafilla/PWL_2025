@@ -21,7 +21,8 @@
             <table class="table table-bordered table-striped table-hover table-sm" id="table_level">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Nomor</th>
+                        <th>ID Supplier</th>
                         <th>SupplierKode</th>
                         <th>SupplierNama</th>
                         <th>Aksi</th>
@@ -55,7 +56,14 @@
                     }
                 },
                 columns: [{
-                        data: "DT_RowIndex",
+                    data: "DT_RowIndex",
+                        className: "text-center",
+                        orderable: false,
+                        searchable: false
+                    
+                    },
+                    {
+                        data: "supplier_id",
                         className: "text-center",
                         orderable: false,
                         searchable: false
