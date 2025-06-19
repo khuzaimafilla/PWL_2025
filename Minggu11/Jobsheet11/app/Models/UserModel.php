@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -14,7 +15,7 @@ class UserModel extends Authenticatable implements JWTSubject
 
     protected $table = 'm_user';
     protected $primaryKey = 'user_id';
-    protected $fillable = ['username', 'password', 'nama', 'level_id', 'created_at', 'updated_at','photo_profile'];
+    protected $fillable = ['username', 'password', 'nama', 'level_id', 'created_at', 'updated_at','photo_profile', 'image'];
 
     protected $hidden = ['password']; // jangan ditampilkan saat select
 
@@ -59,6 +60,13 @@ class UserModel extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function image()
+    {
+        return Attribute::make(
+            get: fn ($image) => url('/storage/posts/'. $image),
+        );
     }
 }
 
